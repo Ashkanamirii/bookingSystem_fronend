@@ -1,12 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './App.jsx';
 import reportWebVitals from './reportWebVitals';
 
 // imports
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import "./components/auth/signUp/SignUpForm.css";
 
 ReactDOM.render(
   <React.StrictMode>

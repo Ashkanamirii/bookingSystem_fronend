@@ -1,20 +1,35 @@
 import "./App.css";
-import { Switch, BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
+import Main from "./components/layout/Main.jsx";
 
 // imports components
-import Header from "./components/Header.jsx";
+import Header from "./components/layout/Header.jsx";
+import LoggedContext from "./context/LoggedContext.js";
+import ModalContext from "./context/ModalContext.js";
+import UserContext from "./context/UserContext.js";
+import { useState } from "react";
 
 //Component---Before that, it was class instead of function
 function App() {
+  const [show, setShow] = useState(false);
+  const [isLogged, setIsLogged] = useState(false);
+
+  const [userInformation, setUserInformation] = useState(
+    JSON.parse(localStorage.getItem("currentUser"))
+  );
+
   return (
     <div className="App">
-      <Router>
-        <Header></Header>
-        <Switch>
-          <Route path="/home"></Route>
-          <Route path="/checkout">checkout</Route>
-        </Switch>
-      </Router>
+      <LoggedContext.Provider value={[isLogged, setIsLogged]}>
+        <ModalContext.Provider value={[show, setShow]}>
+          <UserContext.Provider value={[userInformation, setUserInformation]}>
+            <Router>
+              <Header></Header>
+              <Main></Main>
+            </Router>
+          </UserContext.Provider>
+        </ModalContext.Provider>
+      </LoggedContext.Provider>
     </div>
   );
 }
