@@ -6,7 +6,7 @@ export default function Verification(){
     const queryString = getTokenFromUrl(window.location.search);
     const history = useHistory();
     sendToken(queryString,history)
-   return (<h1>{queryString}</h1>)
+   return (<h1>Verify your account</h1>)
 }
 
 function getTokenFromUrl(address){
@@ -18,13 +18,11 @@ function sendToken(token,history){
     api
       .get("authenticate/verify/"+token)
       .then((response) => {
-        if (response.status === 500) {
-          console.log(response.text());
-        } else {
-          console.log(response.data);
           swal("Your account is activated", response.data, "success").then(() => {
             history.push("/login");
           });
-}
-})
+
+}).catch((error) =>{swal("Couldn't activate your account", "some error", "error").then(() => {
+    history.push("/home");
+  });console.log(error.response)})
 }
