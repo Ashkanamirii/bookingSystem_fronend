@@ -2,6 +2,7 @@ import { Switch, Route } from "react-router-dom";
 import Home from "./../../pages/Home.js"
 import SignUp from "./../../pages/SignUp.js"
 import Login from "../../pages/Login.js"
+import Verification from "../../pages/Verification.js"
 
 function Main (){
 return(
@@ -15,6 +16,9 @@ return(
           </Route>
           <Route path="/login">
             <Login></Login>
+          </Route>
+          <Route path="/verify/account/">
+            <Verification></Verification>
           </Route>
         </Switch>
     </div>

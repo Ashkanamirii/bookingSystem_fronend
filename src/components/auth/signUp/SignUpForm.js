@@ -1,6 +1,6 @@
 import Input from "./../../customiseElements/Input";
 import { useState } from "react";
-import api from "../../../api/endpoint.js";
+import api from "../../../Api/endpoint.js";
 import swal from "sweetalert";
 import { useHistory } from "react-router-dom";
 
@@ -101,7 +101,8 @@ function SignUpForm(params) {
           console.log(response.text());
         } else {
           console.log(response.data);
-          swal("Good job!", response.data, "success").then(() => {
+         
+          swal("An account verification email was sent, check your email to activate your account", response.data, "success").then(() => {
             history.push("/login");
           });
           
