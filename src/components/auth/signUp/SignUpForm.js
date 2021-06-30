@@ -12,7 +12,7 @@ function SignUpForm(params) {
     lastName: "",
     email: "",
     password: "",
-    securityNR: "",
+    securityNumber: 0,
   };
 
   const [user, setUser] = useState(userDetail);
@@ -57,7 +57,7 @@ function SignUpForm(params) {
             <Input
               type="name"
               placeholder="Security Number"
-              value={(e) => setUser({ ...user, securityNR: e })}
+              value={(e) => setUser({ ...user, securityNumber: Number(e) })}
             />
             <Input
               type="email"
