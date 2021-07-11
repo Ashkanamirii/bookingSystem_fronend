@@ -1,4 +1,4 @@
-import api from "../Api/endpoint.js";
+import api from "../api/endpoint.js";
 import swal from "sweetalert";
 import { useHistory } from "react-router-dom";
 
@@ -15,6 +15,7 @@ return splitted[1]
 
 }
 function sendToken(token,history){
+  console.log(token);
     api
       .get("authenticate/verify/"+token)
       .then((response) => {

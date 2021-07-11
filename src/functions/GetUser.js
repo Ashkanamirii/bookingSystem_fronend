@@ -1,64 +1,17 @@
-import { Modal } from "react-bootstrap";
-import "./modal.css";
+import { useHistory } from "react-router-dom";
+import api from "../api/endpoint";
 import { useContext , useState} from "react";
-import { Link, useHistory } from "react-router-dom";
-import ModalContext from "../../../context/ModalContext.js";
-import LoggedContext from "../../../context/LoggedContext.js";
-import UserContext from "../../../context/UserContext.js";
-import { useEffect } from "react";
-import Form from "./Form.jsx";
-import api from "../../../api/endpoint";
+import ModalContext from "../context/ModalContext.js";
+import LoggedContext from "../context/LoggedContext.js";
+import UserContext from "../context/UserContext.js";
 
+function GetUser(user) {
+    let history = useHistory();
+    const [userInformation, setUserInformation] = useContext(UserContext);
+    const [show, setShow] = useContext(ModalContext);
+    const [isLogged, setIsLogged] = useContext(LoggedContext);
+    const [error, setError] = useState("")
 
-function LoginModal(props) {
-
-
-  let history = useHistory();
-  const [show, setShow] = useContext(ModalContext);
-  const [isLogged, setIsLogged] = useContext(LoggedContext);
-  const [userInformation, setUserInformation] = useContext(UserContext)
-  const [error, setError] = useState("")
-    setTimeout(() => {
-    setError("")
-  }, 3000);
-  useEffect(() => {
-    console.log("loginModal");
-  }, [show]);
-
-  const handleClose = () => {
-    setShow(false);
-  };
-
-  return (
-    <Modal show={show} onHide={handleClose} backdrop="static" keyboard={false}>
-      <Modal.Header closeButton>
-        <h3>Sign In</h3>
-      </Modal.Header>
-      <Modal.Body>
-        <Form userInfoForm={getUser} error={error} />
-      </Modal.Body>
-      <Modal.Footer>
-        <div className="d-flex justify-content-center links">
-          Don't have an account?
-          <Link to="sign-up" onClick={handleClose}>
-            Sign Up
-          </Link>
-        </div>
-        <div className="d-flex justify-content-center">
-          <Link to="#" onClick={handleClose}>
-            Forgot your password?
-          </Link>
-        </div>
-      </Modal.Footer>
-    </Modal>
-  );
-
-  /**
-   *
-   * @param {object} user
-   */
-  function getUser(user) {
-    
     console.log(user);
     api
       .post("/authenticate/login", user)
@@ -113,6 +66,4 @@ function LoginModal(props) {
      
   
   }
-}
-
-export default LoginModal;
+  export default GetUser;

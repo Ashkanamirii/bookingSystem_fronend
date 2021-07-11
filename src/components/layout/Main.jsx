@@ -3,6 +3,7 @@ import Home from "./../../pages/Home.js"
 import SignUp from "./../../pages/SignUp.js"
 import Login from "../../pages/Login.js"
 import Verification from "../../pages/Verification.js"
+import ForgotPassword from "./../auth/ForgotPassword"
 
 function Main (){
 return(
@@ -19,6 +20,9 @@ return(
           </Route>
           <Route path="/verify/account/">
             <Verification></Verification>
+          </Route>
+          <Route path="/reset/pass/">
+            <ForgotPassword></ForgotPassword>
           </Route>
         </Switch>
     </div>

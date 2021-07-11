@@ -1,6 +1,6 @@
 import Input from "./../../customiseElements/Input";
 import { useState } from "react";
-import api from "../../../Api/endpoint.js";
+import api from "../../../api/endpoint.js";
 import swal from "sweetalert";
 import { useHistory } from "react-router-dom";
 

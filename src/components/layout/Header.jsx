@@ -8,7 +8,6 @@ import {
   ButtonGroup,
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import api from "./../../Api/endpoint";
 import LoggedContext from "../../context/LoggedContext.js";
 import ModalContext from "../../context/ModalContext.js";
 import UserContext from "../../context/UserContext.js";
