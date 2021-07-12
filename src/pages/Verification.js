@@ -14,6 +14,8 @@ const splitted= address.split("token=")
 return splitted[1]
 
 }
+
+
 function sendToken(token,history){
   console.log(token);
     api
@@ -23,7 +25,11 @@ function sendToken(token,history){
             history.push("/login");
           });
 
-}).catch((error) =>{swal("Couldn't activate your account", "some error", "error").then(() => {
+}).catch((error) =>{
+  if(error.response.status===500)
+  swal("Server gave an error, but seems to work", "", "error")
+  else
+  swal("Couldn't activate your account", "some error", "error").then(() => {
     history.push("/home");
   });console.log(error.response)})
 }
