@@ -8,11 +8,8 @@ const ForgotPassword = () => {
   const [repeatPassword, setRepeatPassword] = useState("");
   const query = new URLSearchParams(useLocation().search);
   // const [showNewPass,setShowNewPass] = useState(false)
- const emailQuery=query.get("email")
- const tokenQuery=query.get("token")
- 
-
-
+  const emailQuery = query.get("email");
+  const tokenQuery = query.get("token");
 
   const sendEmail = () => {
     api
@@ -24,34 +21,41 @@ const ForgotPassword = () => {
   };
 
   const resetPassword = () => {
-    
+    console.log(tokenQuery);
+    console.log(emailQuery);
+    console.log(password);
     api
-      .get(`/authenticate/renewpass/${query.get("token")}`,{email:emailQuery, newPassword:password})
+      .post(`/authenticate/renewpass/${tokenQuery}`, {
+        email: emailQuery,
+        newPassword: password,
+      })
       .then((res) => {
         console.log(res);
       })
       .catch((error) => console.log(error));
   };
 
-
   return (
-    <div>
+    <div className="container">
       <input
+        className="form-control col-6 mb-2 "
         type="email"
         placeholder="Email"
         disabled={tokenQuery ? "disabled" : ""}
-        value={tokenQuery ? emailQuery :email}
+        value={tokenQuery ? emailQuery : email}
         onChange={(e) => setEmail(e.target.value)}
       />
       {tokenQuery ? (
         <div>
           <input
+            className="form-control col-6 mb-2"
             type="password"
             placeholder="New password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
           <input
+            className="form-control col-6 mb-2"
             type="password"
             placeholder="Repeat new password"
             value={repeatPassword}
