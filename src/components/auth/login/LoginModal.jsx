@@ -45,7 +45,7 @@ function LoginModal(props) {
           </Link>
         </div>
         <div className="d-flex justify-content-center">
-          <Link to="#" onClick={handleClose}>
+          <Link to="/reset/pass/" onClick={handleClose}>
             Forgot your password?
           </Link>
         </div>

@@ -1,8 +1,10 @@
 import { useState } from "react";
 import api from "./../../api/endpoint";
-import { useLocation } from "react-router-dom";
+import { useLocation, useHistory } from "react-router-dom";
+import swal from "sweetalert";
 
 const ForgotPassword = () => {
+  const history = useHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
@@ -14,29 +16,59 @@ const ForgotPassword = () => {
   const sendEmail = () => {
     api
       .post(`/authenticate/resetpass/${email}`)
-      .then((res) => {
-        console.log(res);
+      .then((response) => {
+        swal(
+          "A reset password link was sent, check your email to continue the process",
+          response.data,
+          "success"
+        ).then(() => {
+          history.push("/home");
+        });
+        console.log(response);
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        swal(
+          "Somethings happened during reset password",
+          "Please try again",
+          "warning"
+        );
+        console.log(error);
+      });
   };
 
   const resetPassword = () => {
-    console.log(tokenQuery);
-    console.log(emailQuery);
-    console.log(password);
     api
-      .post(`/authenticate/renewpass/${tokenQuery}`, {
+      .post("/authenticate/renewpass/", {
+        resetToken: tokenQuery,
         email: emailQuery,
         newPassword: password,
       })
-      .then((res) => {
-        console.log(res);
+      .then((response) => {
+        swal(
+          "your password has been changed successfully, You can log in now",
+          response.data,
+          "success"
+        ).then(() => {
+          history.push("/login");
+        });
+        console.log(response);
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        console.log(error);
+        swal(
+          "Somethings happened during reset password",
+          "Please try again",
+          "warning"
+        );
+      });
   };
 
   return (
     <div className="container">
+      <h3>RESET YOUR PASSWORD</h3>
+      <p>
+        It looks like you forgot your password
+      </p>
       <input
         className="form-control col-6 mb-2 "
         type="email"
@@ -47,6 +79,7 @@ const ForgotPassword = () => {
       />
       {tokenQuery ? (
         <div>
+    
           <input
             className="form-control col-6 mb-2"
             type="password"
@@ -66,7 +99,7 @@ const ForgotPassword = () => {
             className="btn btn-primary"
             onClick={resetPassword}
           >
-            reset password
+            Renew password
           </button>
         </div>
       ) : (
