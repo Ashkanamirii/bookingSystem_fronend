@@ -1,16 +1,14 @@
 import api from "../baseUrl/endpoint.js";
 import Form from "../components/auth/login/Form.jsx";
 import LoggedContext from "../context/LoggedContext.js";
-import ModalContext from "../context/ModalContext.js";
 import { useContext } from "react";
 import { useHistory } from "react-router-dom";
 import UserContext from "../context/UserContext.js";
 
 function Login() {
   let history = useHistory();
-  const [userInformation, setUserInformation] = useContext(UserContext);
-  const [show, setShow] = useContext(ModalContext);
-  const [isLogged, setIsLogged] = useContext(LoggedContext);
+  const [setUserInformation] = useContext(UserContext);
+  const [setIsLogged] = useContext(LoggedContext);
 
   return (
     <div className="outer">
@@ -48,9 +46,6 @@ function Login() {
                 JSON.stringify(response.data)
               );
 
-              const { id, firstName, lastName, email, securityNumber } =
-                response.data;
-              console.log(response.data);
               setUserInformation(response.data);
               setIsLogged(true);
             });

@@ -18,15 +18,14 @@ import LoginModal from "../auth/login/LoginModal.jsx";
  * @param {*}
  */
 function Header() {
-  const [show, setShow] = useContext(ModalContext);
+  const [setShow] = useContext(ModalContext);
   const [isLogged, setIsLogged] = useContext(LoggedContext);
-  const [userInformation, setUserInformation] = useContext(UserContext);
+  const [userInformation] = useContext(UserContext);
 
   const [firstName, setFirstName] = useState("");
 
   useEffect(() => {
     if (localStorage.getItem("currentUser")) {
-      // const u = JSON.parse(localStorage.getItem("currentUser"))
       setFirstName(userInformation.firstName);
       setIsLogged(true);
     }
