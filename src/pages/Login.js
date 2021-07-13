@@ -1,4 +1,4 @@
-import api from "../api/endpoint.js";
+import api from "../baseUrl/endpoint.js";
 import Form from "../components/auth/login/Form.jsx";
 import LoggedContext from "../context/LoggedContext.js";
 import ModalContext from "../context/ModalContext.js";

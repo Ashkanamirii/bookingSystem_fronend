@@ -1,4 +1,4 @@
-import api from "../api/endpoint.js";
+import api from "../baseUrl/endpoint.js";
 import swal from "sweetalert";
 import { useHistory } from "react-router-dom";
 

@@ -7,7 +7,7 @@ import LoggedContext from "../../../context/LoggedContext.js";
 import UserContext from "../../../context/UserContext.js";
 import { useEffect } from "react";
 import Form from "./Form.jsx";
-import api from "../../../api/endpoint";
+import api from "../../../baseUrl/endpoint";
 
 
 function LoginModal(props) {

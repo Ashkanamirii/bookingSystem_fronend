@@ -1,5 +1,5 @@
 import { useState } from "react";
-import api from "./../../api/endpoint";
+import api from "./../../baseUrl/endpoint";
 import { useLocation, useHistory } from "react-router-dom";
 import swal from "sweetalert";
 
