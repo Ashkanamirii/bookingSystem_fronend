@@ -49,7 +49,7 @@ function Header() {
         <div>
           <Navbar.Brand href="/home">BOOKING SYSTEM</Navbar.Brand>
 
-          <Link className="text-light" to="/bookTime">
+          <Link className="text-light" to="/clubs">
             Book
           </Link>
         </div>
