@@ -4,6 +4,7 @@ import SignUp from "./../../pages/SignUp.js"
 import Login from "../../pages/Login.js"
 import Verification from "../../pages/Verification.js"
 import ForgotPassword from "./../auth/ForgotPassword"
+import TimeAvailble from "./../timeAvailble"
 
 function Main (){
 return(
@@ -23,6 +24,9 @@ return(
           </Route>
           <Route path="/reset/pass/">
             <ForgotPassword></ForgotPassword>
+          </Route>
+          <Route path="/bookTime/">
+            <TimeAvailble></TimeAvailble>
           </Route>
         </Switch>
     </div>

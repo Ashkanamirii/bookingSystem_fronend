@@ -1,76 +1,33 @@
-import api from "../baseUrl/endpoint.js";
 import Form from "../components/auth/login/Form.jsx";
 import LoggedContext from "../context/LoggedContext.js";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useHistory } from "react-router-dom";
 import UserContext from "../context/UserContext.js";
+import getUser from "../functions/GetUser";
 
 function Login() {
   let history = useHistory();
-  const [setUserInformation] = useContext(UserContext);
-  const [setIsLogged] = useContext(LoggedContext);
+  const [userInformation, setUserInformation] = useContext(UserContext);
+  const [isLogged, setIsLogged] = useContext(LoggedContext);
+  const [error, setError] = useState("");
 
+  const submitForm = (user) => {
+    if (typeof getUser(user) == "object") {
+      setUserInformation(getUser(user));
+      setIsLogged(true);
+
+      history.push("/home");
+    } else {
+      setError(getUser(user));
+    }
+  };
   return (
     <div className="outer">
       <div className="inner">
         <h3>Log in</h3>
-        <Form userInfoForm={getUser} />
+        <Form userInfoForm={submitForm} />
       </div>
     </div>
   );
-
-  /**
-   *
-   * @param {object} user
-   */
-  function getUser(user) {
-    console.log(user);
-    api
-      .post("/authenticate/login", user)
-      .then((response) => {
-        if (response.status === 400) {
-          console.log(response.text());
-        } else {
-          console.log(response.data);
-          const token = response.data.accessToken;
-
-          api
-            .get("/customer/mydetails", {
-              headers: {
-                Authorization: "Bearer " + token,
-              },
-            })
-            .then((response) => {
-              localStorage.setItem(
-                "currentUser",
-                JSON.stringify(response.data)
-              );
-
-              setUserInformation(response.data);
-              setIsLogged(true);
-            });
-
-          history.push("/home");
-        }
-      })
-      .catch(function (error) {
-        if (error.response) {
-          // The request was made and the server responded with a status code
-          // that falls out of the range of 2xx
-          console.log(error.response.data); // the response is email not found
-          console.log(error.response.status); // STATUS 418 when email not found but 403 when pass is wrong
-          console.log(error.response.headers);
-        } else if (error.request) {
-          // The request was made but no response was received
-          // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
-          // http.ClientRequest in node.js
-          console.log(error.request);
-        } else {
-          // Something happened in setting up the request that triggered an Error
-          console.log("Error", error.message);
-        }
-        console.log(error.config);
-      });
-  }
 }
 export default Login;

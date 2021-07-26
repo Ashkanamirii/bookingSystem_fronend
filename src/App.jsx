@@ -8,6 +8,7 @@ import LoggedContext from "./context/LoggedContext.js";
 import ModalContext from "./context/ModalContext.js";
 import UserContext from "./context/UserContext.js";
 import { useState } from "react";
+import Footer from "./components/layout/Footer";
 
 //Component---Before that, it was class instead of function
 function App() {
@@ -26,6 +27,7 @@ function App() {
             <Router>
               <Header></Header>
               <Main></Main>
+              <Footer></Footer>
             </Router>
           </UserContext.Provider>
         </ModalContext.Provider>

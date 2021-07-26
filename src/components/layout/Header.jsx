@@ -18,9 +18,9 @@ import LoginModal from "../auth/login/LoginModal.jsx";
  * @param {*}
  */
 function Header() {
-  const [setShow] = useContext(ModalContext);
+  const [show, setShow] = useContext(ModalContext);
   const [isLogged, setIsLogged] = useContext(LoggedContext);
-  const [userInformation] = useContext(UserContext);
+  const [userInformation, setUserInformation] = useContext(UserContext);
 
   const [firstName, setFirstName] = useState("");
 
@@ -46,12 +46,13 @@ function Header() {
         variant="dark"
         className="d-flex justify-content-between"
       >
-        <Navbar.Brand href="/home">BOOKING SYSTEM</Navbar.Brand>
+        <div>
+          <Navbar.Brand href="/home">BOOKING SYSTEM</Navbar.Brand>
 
-        <Form inline className="w-50">
-          <FormControl type="text" placeholder="Search" className="w-75" />
-          <Button variant="outline-info">Search</Button>
-        </Form>
+          <Link className="text-light" to="/bookTime">
+            Book
+          </Link>
+        </div>
 
         <div className="">
           {isLogged ? (
