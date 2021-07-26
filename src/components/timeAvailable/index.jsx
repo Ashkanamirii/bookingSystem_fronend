@@ -2,7 +2,7 @@ import { useState } from "react";
 import Header from "./Header.jsx";
 import Booking from "./Booking.jsx";
 import TimeTable from "./TimeTable.jsx";
-import BookingContext from "./../../context/BookingContext";
+import BookingContext from "../../context/BookingContext";
 
 const Index = () => {
   const [booking, setBooking] = useState(false);

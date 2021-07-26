@@ -4,21 +4,19 @@ import api from './TimeRangeApi'
 
 const TimeTable = () => {
 
-    const [timesAvailble, setTimesAvailble] = useState()
+    const [timesAvailable, setTimesAvailable] = useState()
 
     useEffect(() => {
-
-
-       setTimesAvailble(api)
+       setTimesAvailable(api)
        
     }, [])
 
 
     return (
         <div >
-            {timesAvailble
+            {timesAvailable
             ?
-                timesAvailble.map(item => <TimeRang range={item.range} id={item.id} />)
+                timesAvailable.map(item => <TimeRang range={item.range} id={item.id} />)
             :
             <h3>No times available</h3>
         }
