@@ -8,37 +8,43 @@ import {
   ButtonGroup,
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import LoggedContext from "../../context/LoggedContext.js";
-import ModalContext from "../../context/ModalContext.js";
-import UserContext from "../../context/UserContext.js";
-import { useContext, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import LoginModal from "../auth/login/LoginModal.jsx";
+import { connect, useDispatch } from "react-redux";
+import { setLogin } from "../../redux/actions/loginActions";
+import userDetailApi from "../../service/userDetailsApi";
+import { setUserInformation } from "../../redux/actions/userActions";
+
 /**
  * Header of the application
  * @param {*}
  */
-function Header() {
-  const [show, setShow] = useContext(ModalContext);
-  const [isLogged, setIsLogged] = useContext(LoggedContext);
-  const [userInformation, setUserInformation] = useContext(UserContext);
-
+function Header(props) {
+  const [showModal, setShowModal] = useState(false);
+  const dispatch = useDispatch();
   const [firstName, setFirstName] = useState("");
+  const handleShow = (x) => setShowModal(x);
+  const [isLogged, setIsLogged] = useState(props.isLogin);
 
-  useEffect(() => {
-    if (localStorage.getItem("currentUser")) {
-      setFirstName(userInformation.firstName);
-      setIsLogged(true);
+  useEffect(async () => {
+    if (isLogged){
+      const t = localStorage.getItem("token");
+      const userInfo = await userDetailApi(t);
+      dispatch(setUserInformation(userInfo));
+      setFirstName(userInfo.firstName);
+      // props.dispatch(setLogin(true)) another way to send info
     }
-  });
+  }, [isLogged]);
 
-  //  const handleClose = () => userContext.show = false;
+  console.log(props.user);
+  console.log();
+
   const logOut = () => {
     localStorage.removeItem("currentUser");
-    setIsLogged(false);
+    localStorage.removeItem("token");
+    dispatch(setLogin(false));
   };
-  const handleShow = () => {
-    setShow(true);
-  };
+
   return (
     <>
       <Navbar
@@ -55,7 +61,7 @@ function Header() {
         </div>
 
         <div className="">
-          {isLogged ? (
+          {props.isLogin ? (
             <DropdownButton
               as={ButtonGroup}
               id={`dropdown-variants-primary`}
@@ -70,7 +76,11 @@ function Header() {
               </Dropdown.Item>
             </DropdownButton>
           ) : (
-            <Button className=" ml-3" variant="primary" onClick={handleShow}>
+            <Button
+              className=" ml-3"
+              variant="primary"
+              onClick={() => handleShow(true)}
+            >
               login
             </Button>
           )}
@@ -82,9 +92,26 @@ function Header() {
           </Button>
         </div>
       </Navbar>
-      <LoginModal />
+      <LoginModal handleClick={handleShow} show={showModal} />
     </>
   );
 }
 
-export default Header;
+const mapStateToProps = (state) => {
+  return {
+    isLogin: state.loginReducer.isLogin,
+    user: state.userReducer.user,
+  };
+
+  // const { isLogin } = state.login;
+  // return {
+  //   isLogin,
+  // };
+};
+// const mapDispatchToProps = (dispatch) =>{
+//   return {
+//     setLogin = dispatch.setLogin(true)
+//   }
+// }
+
+export default connect(mapStateToProps, null)(Header);

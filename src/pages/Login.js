@@ -1,25 +1,26 @@
 import Form from "../components/auth/login/Form.jsx";
-import LoggedContext from "../context/LoggedContext.js";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { useHistory } from "react-router-dom";
-import UserContext from "../context/UserContext.js";
-import getUser from "../functions/GetUser";
+import getTokenApi from "../service/getTokenApi";
+import userDetailsApi from "../service/userDetailsApi";
+import { connect, useDispatch } from "react-redux";
+import { setLogin } from "../redux/actions/loginActions";
+import { setUserInformation } from "../redux/actions/userActions";
 
 function Login() {
   let history = useHistory();
-  const [userInformation, setUserInformation] = useContext(UserContext);
-  const [isLogged, setIsLogged] = useContext(LoggedContext);
-  const [error, setError] = useState("");
-
+  const dispatch = useDispatch();
   const submitForm = (user) => {
-    if (typeof getUser(user) == "object") {
-      setUserInformation(getUser(user));
-      setIsLogged(true);
+    new Promise((res,error)=>{
+      getTokenApi(user);
+    }).then((res) => {
+      const u = userDetailsApi();
+      dispatch(setUserInformation(u));
+    }).catch(error => {console.log(error);})
 
-      history.push("/home");
-    } else {
-      setError(getUser(user));
-    }
+    dispatch(setLogin(true));
+    console.log("hej");
+    history.push("/home");
   };
   return (
     <div className="outer">
@@ -30,4 +31,5 @@ function Login() {
     </div>
   );
 }
-export default Login;
+
+export default connect()(Login);

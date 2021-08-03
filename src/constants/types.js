@@ -1,0 +1,4 @@
+export const SET_IS_LOGIN = "SET_IS_LOGIN";
+export const USER_INFORMATION = "USER_INFORMATION";
+export const SET_BOOKING = "SET_BOOKING";
+

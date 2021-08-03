@@ -1,7 +1,6 @@
 import { useState } from "react";
-import api from "./../../baseUrl/endpoint";
 import { useLocation, useHistory } from "react-router-dom";
-import swal from "sweetalert";
+import {sendEmail,resetPassword} from "./../../service/forgetPasswordApi"
 
 const ForgotPassword = () => {
   const history = useHistory();
@@ -9,59 +8,20 @@ const ForgotPassword = () => {
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
   const query = new URLSearchParams(useLocation().search);
-  // const [showNewPass,setShowNewPass] = useState(false)
   const emailQuery = query.get("email");
   const tokenQuery = query.get("token");
 
-  const sendEmail = () => {
-    api
-      .post(`/authenticate/resetpass/${email}`)
-      .then((response) => {
-        swal(
-          "A reset password link was sent, check your email to continue the process",
-          response.data,
-          "success"
-        ).then(() => {
-          history.push("/home");
-        });
-        console.log(response);
-      })
-      .catch((error) => {
-        swal(
-          "Somethings happened during reset password",
-          "Please try again",
-          "warning"
-        );
-        console.log(error);
-      });
-  };
 
-  const resetPassword = () => {
-    api
-      .post("/authenticate/renewpass/", {
-        resetToken: tokenQuery,
-        email: emailQuery,
-        newPassword: password,
-      })
-      .then((response) => {
-        swal(
-          "your password has been changed successfully, You can log in now",
-          response.data,
-          "success"
-        ).then(() => {
-          history.push("/login");
-        });
-        console.log(response);
-      })
-      .catch((error) => {
-        console.log(error);
-        swal(
-          "Somethings happened during reset password",
-          "Please try again",
-          "warning"
-        );
-      });
-  };
+  const sendEmailToUser = () => {
+    sendEmail(email)
+    history.push("/home")
+  }
+
+  const resetPasswordHandle = () => {
+    resetPassword(tokenQuery,emailQuery, password)
+    history.push("/login")
+  }
+  
 
   return (
     <div className="container">
@@ -97,14 +57,14 @@ const ForgotPassword = () => {
           <button
             type="submit"
             className="btn btn-primary"
-            onClick={resetPassword}
+            onClick={resetPasswordHandle}
           >
             Renew password
           </button>
         </div>
       ) : (
         <div>
-          <button type="submit" className="btn btn-primary" onClick={sendEmail}>
+          <button type="submit" className="btn btn-primary" onClick={sendEmailToUser}>
             Submit
           </button>
         </div>

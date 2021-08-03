@@ -1,18 +1,21 @@
 import Input from "./../../customiseElements/Input";
 import { useState } from "react";
-import api from "../../../baseUrl/endpoint.js";
-import swal from "sweetalert";
+import signUpApi from "./../../../service/signUpApi";
 import { useHistory } from "react-router-dom";
-
 function SignUpForm(params) {
-  let history = useHistory();
-
+  const history = useHistory();
   let userDetail = {
     firstName: "",
     lastName: "",
     email: "",
     password: "",
     securityNumber: 0,
+  };
+
+  const signUpApiHandle = (e) => {
+    e.preventDefault();
+    signUpApi(user);
+    history.push("/login");
   };
 
   const [user, setUser] = useState(userDetail);
@@ -41,7 +44,7 @@ function SignUpForm(params) {
           </div>
         </div>
         <div className="col-md-6 rcol">
-          <form className="sign-up" onSubmit={signUpForm}>
+          <form className="sign-up" onSubmit={signUpApiHandle}>
             <h2 className="heading mb-4">Sign up</h2>
 
             <Input
@@ -85,48 +88,6 @@ function SignUpForm(params) {
       </div>
     </div>
   );
-
-  /**
-   *
-   * @param {object} user
-   */
-  function signUpForm(e) {
-    e.preventDefault();
-    console.log(user);
-
-    api
-      .post("/authenticate/signup", user)
-      .then((response) => {
-        if (response.status === 400) {
-          console.log(response.text());
-        } else {
-          console.log(response.data);
-         
-          swal("An account verification email was sent, check your email to activate your account", response.data, "success").then(() => {
-            history.push("/login");
-          });
-          
-        }
-      })
-      .catch(function (error) {
-        if (error.response) {
-          // The request was made and the server responded with a status code
-          // that falls out of the range of 2xx
-          console.log(error.response.data);
-          console.log(error.response.status);
-          console.log(error.response.headers);
-        } else if (error.request) {
-          // The request was made but no response was received
-          // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
-          // http.ClientRequest in node.js
-          console.log(error.request);
-        } else {
-          // Something happened in setting up the request that triggered an Error
-          console.log("Error", error.message);
-        }
-        console.log(error.config);
-      });
-  }
 }
 
 export default SignUpForm;
