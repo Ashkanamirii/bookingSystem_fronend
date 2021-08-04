@@ -1,7 +1,5 @@
 import {
   Navbar,
-  Form,
-  FormControl,
   Button,
   Dropdown,
   DropdownButton,
@@ -10,7 +8,7 @@ import {
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import LoginModal from "../auth/login/LoginModal.jsx";
-import { connect, useDispatch } from "react-redux";
+import { connect, useDispatch, useSelector } from "react-redux";
 import { setLogin } from "../../redux/actions/loginActions";
 import userDetailApi from "../../service/userDetailsApi";
 import { setUserInformation } from "../../redux/actions/userActions";
@@ -24,20 +22,25 @@ function Header(props) {
   const dispatch = useDispatch();
   const [firstName, setFirstName] = useState("");
   const handleShow = (x) => setShowModal(x);
-  const [isLogged, setIsLogged] = useState(props.isLogin);
+  const isLogin = useSelector((state) => state.loginReducer.isLogin);
 
   useEffect(async () => {
-    if (isLogged){
+    console.log(isLogin);
+    if (isLogin) {
       const t = localStorage.getItem("token");
-      const userInfo = await userDetailApi(t);
-      dispatch(setUserInformation(userInfo));
-      setFirstName(userInfo.firstName);
-      // props.dispatch(setLogin(true)) another way to send info
+      const u = await userDetailApi(t);
+      dispatch(setUserInformation(u));
+      setFirstName(u.firstName);
+      setUserInformationToLocalStorage(u)
     }
-  }, [isLogged]);
+  }, [isLogin]);
 
-  console.log(props.user);
-  console.log();
+
+  const setUserInformationToLocalStorage = (userInfo) => {
+    if (localStorage.getItem("token")){
+      localStorage.setItem("currentUser", JSON.stringify(userInfo))
+    }
+  }
 
   const logOut = () => {
     localStorage.removeItem("currentUser");
@@ -61,7 +64,7 @@ function Header(props) {
         </div>
 
         <div className="">
-          {props.isLogin ? (
+          {isLogin ? (
             <DropdownButton
               as={ButtonGroup}
               id={`dropdown-variants-primary`}
@@ -97,21 +100,4 @@ function Header(props) {
   );
 }
 
-const mapStateToProps = (state) => {
-  return {
-    isLogin: state.loginReducer.isLogin,
-    user: state.userReducer.user,
-  };
-
-  // const { isLogin } = state.login;
-  // return {
-  //   isLogin,
-  // };
-};
-// const mapDispatchToProps = (dispatch) =>{
-//   return {
-//     setLogin = dispatch.setLogin(true)
-//   }
-// }
-
-export default connect(mapStateToProps, null)(Header);
+export default Header;

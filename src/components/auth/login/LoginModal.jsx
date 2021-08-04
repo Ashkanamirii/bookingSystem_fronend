@@ -17,7 +17,6 @@ function LoginModal(props) {
     await getTokenApi(user);
     dispatch(setLogin(true))
     handleClose();
-    history.push("/home");
   };
 
   return (

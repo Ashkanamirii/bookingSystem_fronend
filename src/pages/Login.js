@@ -1,27 +1,19 @@
 import Form from "../components/auth/login/Form.jsx";
-import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import getTokenApi from "../service/getTokenApi";
-import userDetailsApi from "../service/userDetailsApi";
-import { connect, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setLogin } from "../redux/actions/loginActions";
-import { setUserInformation } from "../redux/actions/userActions";
 
 function Login() {
-  let history = useHistory();
+  const history = useHistory();
   const dispatch = useDispatch();
-  const submitForm = (user) => {
-    new Promise((res,error)=>{
-      getTokenApi(user);
-    }).then((res) => {
-      const u = userDetailsApi();
-      dispatch(setUserInformation(u));
-    }).catch(error => {console.log(error);})
 
+  const submitForm = async (user) => {
+    await getTokenApi(user);
     dispatch(setLogin(true));
-    console.log("hej");
     history.push("/home");
   };
+
   return (
     <div className="outer">
       <div className="inner">
@@ -32,4 +24,4 @@ function Login() {
   );
 }
 
-export default connect()(Login);
+export default Login;
