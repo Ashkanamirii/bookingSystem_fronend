@@ -1,10 +1,12 @@
 import { Modal } from "react-bootstrap";
-import "./modal.css";
 import { Link, useHistory } from "react-router-dom";
 import Form from "./Form.jsx";
 import getTokenApi from "../../../service/getTokenApi";
+import userDetailsApi from "../../../service/userDetailsApi";
+
 import { useDispatch } from "react-redux";
 import { setLogin } from "../../../redux/actions/loginActions";
+import { setUserInformation } from "../../../redux/actions/loginActions";
 
 function LoginModal(props) {
   let history = useHistory();
@@ -14,8 +16,8 @@ function LoginModal(props) {
   };
 
   const submitForm = async (user) => {
-    await getTokenApi(user);
-    dispatch(setLogin(true))
+    let token = await dispatch(getTokenApi(user));
+    dispatch(userDetailsApi(token));
     handleClose();
   };
 

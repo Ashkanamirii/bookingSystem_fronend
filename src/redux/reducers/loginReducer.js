@@ -1,6 +1,6 @@
 import { SET_IS_LOGIN } from "../../constants/types";
 const initialState = {
-  isLogin: false,
+  isLogin: localStorage.getItem("token") ? true : false,
 };
 
 const loginReducer = (state = initialState, action) => {

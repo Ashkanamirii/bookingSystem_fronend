@@ -3,14 +3,15 @@ import { useHistory } from "react-router-dom";
 import getTokenApi from "../service/getTokenApi";
 import { useDispatch } from "react-redux";
 import { setLogin } from "../redux/actions/loginActions";
+import userDetailsApi from "./../service/userDetailsApi"
 
 function Login() {
   const history = useHistory();
   const dispatch = useDispatch();
 
   const submitForm = async (user) => {
-    await getTokenApi(user);
-    dispatch(setLogin(true));
+    let token = await dispatch(getTokenApi(user));
+    dispatch(userDetailsApi(token));
     history.push("/home");
   };
 

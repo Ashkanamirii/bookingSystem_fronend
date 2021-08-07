@@ -8,7 +8,7 @@ import {
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import LoginModal from "../auth/login/LoginModal.jsx";
-import { connect, useDispatch, useSelector } from "react-redux";
+import {useDispatch, useSelector } from "react-redux";
 import { setLogin } from "../../redux/actions/loginActions";
 import userDetailApi from "../../service/userDetailsApi";
 import { setUserInformation } from "../../redux/actions/userActions";
@@ -20,27 +20,9 @@ import { setUserInformation } from "../../redux/actions/userActions";
 function Header(props) {
   const [showModal, setShowModal] = useState(false);
   const dispatch = useDispatch();
-  const [firstName, setFirstName] = useState("");
   const handleShow = (x) => setShowModal(x);
   const isLogin = useSelector((state) => state.loginReducer.isLogin);
-
-  useEffect(async () => {
-    console.log(isLogin);
-    if (isLogin) {
-      const t = localStorage.getItem("token");
-      const u = await userDetailApi(t);
-      dispatch(setUserInformation(u));
-      setFirstName(u.firstName);
-      setUserInformationToLocalStorage(u)
-    }
-  }, [isLogin]);
-
-
-  const setUserInformationToLocalStorage = (userInfo) => {
-    if (localStorage.getItem("token")){
-      localStorage.setItem("currentUser", JSON.stringify(userInfo))
-    }
-  }
+  const currentUser = useSelector((state) => state.userReducer.user);
 
   const logOut = () => {
     localStorage.removeItem("currentUser");
@@ -69,7 +51,7 @@ function Header(props) {
               as={ButtonGroup}
               id={`dropdown-variants-primary`}
               variant="primary"
-              title={firstName}
+              title={currentUser?.firstName}
             >
               <Dropdown.Item eventKey="1">Profile</Dropdown.Item>
 
