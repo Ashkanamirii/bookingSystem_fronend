@@ -5,7 +5,7 @@ import reportWebVitals from "./reportWebVitals";
 
 // imports
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./components/auth/signUp/SignUpForm.css";
+// import "./components/auth/signUp/SignUpForm.css";
 
 import "./styles/app.scss";
 

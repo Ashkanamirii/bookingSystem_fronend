@@ -3,6 +3,8 @@ import { useState } from "react";
 import signUpApi from "./../../../service/signUpApi";
 import { useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
+
+import "./SignUpForm.css";
 function SignUpForm(params) {
   const history = useHistory();
   let userDetail = {
@@ -23,7 +25,7 @@ function SignUpForm(params) {
 
   return (
     <div className="container d-flex justify-content-center">
-      <div className="row my-5">
+      <div className="row-signUp row my-5">
         <div className="col-md-6 text-left text-white lcol">
           <div className="greeting">
             <h3>
@@ -40,7 +42,8 @@ function SignUpForm(params) {
                 <i className="fab fa-facebook-f"></i>
                 <i className="fab fa-twitter"></i>
               </div>
-              <span>Privacy Policy</span> <span>&copy; 2021 SuperBookingSystem</span>
+              <span>Privacy Policy</span>{" "}
+              <span>&copy; 2021 SuperBookingSystem</span>
             </div>
           </div>
         </div>
@@ -83,7 +86,10 @@ function SignUpForm(params) {
           </form>
 
           <p className="exist mt-4">
-            Existing user? <Link to="/login"><span>Log in</span></Link>
+            Existing user?{" "}
+            <Link to="/login">
+              <span>Log in</span>
+            </Link>
           </p>
         </div>
       </div>
