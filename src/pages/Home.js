@@ -1,10 +1,4 @@
-import TimeTable from "./../components/timeTable/TimeTable";
-
-
 function Home(params) {
-    return(
-        <TimeTable ></TimeTable>
-    )
+  return <div>lorem ipsum dolor sit amet, consectetur adipiscing </div>;
 }
 export default Home;
-

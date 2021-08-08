@@ -6,8 +6,8 @@ const Footer = () => {
     <FooterContainer className="main-footer">
       <div className="footer-middle">
         <div className="container">
-          <div className="row">
-            <div className="col-md-3 col-sm-6">
+          <div className="row d-flex justify-content-center">
+            <div className="col-lg-4 col-md-6">
               <h4>Contact Us</h4>
               <ul className="list-unstyled">
                 <li>Phone: 073******</li>
@@ -15,7 +15,7 @@ const Footer = () => {
                 <li>Email: ipsum dolor</li>
               </ul>
             </div>
-            <div className="col-md-3 col-sm-6">
+            <div className="col-lg-4 col-md-6">
               <h4>Lorem ipsum</h4>
               <ul className="list-unstyled">
                 <li>
@@ -32,24 +32,7 @@ const Footer = () => {
                 </li>
               </ul>
             </div>
-            <div className="col-md-3 col-sm-6">
-              <h4>Lorem ipsum</h4>
-              <ul className="list-unstyled">
-                <li>
-                  <a href="#">lorem ipsum dolor</a>
-                </li>
-                <li>
-                  <a href="#">lorem ipsum dolor</a>
-                </li>
-                <li>
-                  <a href="#">lorem ipsum dolor</a>
-                </li>
-                <li>
-                  <a href="#">lorem ipsum dolor</a>
-                </li>
-              </ul>
-            </div>
-            <div className="col-md-3 col-sm-6">
+            <div className="col-lg-4 col-md-6">
               <h4>Lorem ipsum</h4>
               <ul className="list-unstyled">
                 <li>

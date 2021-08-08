@@ -5,7 +5,7 @@ body {
     font-family: 'Poppins', sans-serif
 }
 
-.row {
+.row-signUp {
     width: 900px;
     border: none;
     border-radius: 0;
@@ -150,7 +150,7 @@ p.exist span {
 }
 
 @media screen and (max-width: 768px) {
-    .row {
+    .row-signUp {
         width: 450px
     }
 
