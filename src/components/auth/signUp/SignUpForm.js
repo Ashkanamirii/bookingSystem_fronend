@@ -1,7 +1,8 @@
-import Input from "./../../customiseElements/Input";
+import Input from "../../customElements/Input";
 import { useState } from "react";
 import signUpApi from "./../../../service/signUpApi";
 import { useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 function SignUpForm(params) {
   const history = useHistory();
   let userDetail = {
@@ -26,10 +27,10 @@ function SignUpForm(params) {
         <div className="col-md-6 text-left text-white lcol">
           <div className="greeting">
             <h3>
-              Welcome to <span className="txt">stoke</span>
+              Welcome to your<span className="txt"> SuperBookingSystem</span>
             </h3>
           </div>
-          <h6 className="mt-3">
+          <h6 className="mt-2">
             let's light some fire and get the show on the road...
           </h6>
           <div className="footer">
@@ -39,7 +40,7 @@ function SignUpForm(params) {
                 <i className="fab fa-facebook-f"></i>
                 <i className="fab fa-twitter"></i>
               </div>
-              <span>Privacy Policy</span> <span>&copy; 2020 Stoke</span>
+              <span>Privacy Policy</span> <span>&copy; 2021 SuperBookingSystem</span>
             </div>
           </div>
         </div>
@@ -82,7 +83,7 @@ function SignUpForm(params) {
           </form>
 
           <p className="exist mt-4">
-            Existing user? <span>Log in</span>
+            Existing user? <Link to="/login"><span>Log in</span></Link>
           </p>
         </div>
       </div>

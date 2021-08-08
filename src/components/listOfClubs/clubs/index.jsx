@@ -1,6 +1,6 @@
 import React from 'react'
 import Header from "./Header.jsx"
-import TimeTable from "../../timeAvailable/TimeTable.jsx"
+// import TimeTable from "../../timeAvailable/TimeTable.jsx"
 
 const Index = ({id,logo,name}) => {
     return (

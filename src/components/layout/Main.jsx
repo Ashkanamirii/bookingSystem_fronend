@@ -21,9 +21,11 @@ function Main() {
     }
   }, []);
   return (
-    <div className="container mt-3">
+    <div>
       <Switch>
-        <Route path="/" exact>{isLogged ? <Home /> : <Login />}</Route>
+        <Route path="/" exact>
+          {isLogged ? <Home /> : <Login />}
+        </Route>
 
         <Route path="/home" exact>
           {isLogged ? <Home /> : <Redirect to="/login" />}

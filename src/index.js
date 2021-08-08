@@ -10,11 +10,9 @@ import "./components/auth/signUp/SignUpForm.css";
 import "./styles/app.scss";
 
 ReactDOM.render(
-  <React.StrictMode>
-    <div className="App">
-      <App />
-    </div>
-  </React.StrictMode>,
+  <div>
+    <App />
+  </div>,
   document.getElementById("root")
 );
 
