@@ -35,7 +35,7 @@ function Header(props) {
     <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Container>
         <Navbar.Brand href="/home">
-          SUPER BOOKING&nbsp;<i class="fas fa-home"></i>
+          SUPER BOOKING&nbsp;<i className="fas fa-home"></i>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
@@ -71,12 +71,15 @@ function Header(props) {
                 </Dropdown.Item>
               </DropdownButton>
             ) : (
-              <div >
+              <div>
                 <Button variant="secondary" onClick={() => handleShow(true)}>
                   login
                 </Button>
-                <Button href="/sign-up" className="ms-2" variant="secondary">
-                  Sign Up
+
+                <Button className="ms-2" variant="secondary">
+                  <Link style={{ textDecoration: 'none' }} className="text-light" to="/sign-up">
+                    sign up
+                  </Link>
                 </Button>
               </div>
             )}
@@ -85,62 +88,6 @@ function Header(props) {
       </Container>
       <LoginModal handleClick={handleShow} show={showModal} />
     </Navbar>
-
-    //       <ul className="nav navbar-nav m-auto">
-    //         {/* <li className="nav-item active">
-    //         </li> */}
-    //         <li className="nav-item active">
-    //           <Link className="nav-link text-light" to="/clubs">
-    //             BOOK
-    //           </Link>
-    //         </li>
-    //         <li className="nav-item active">
-    //           <Link className="nav-link text-light ml-5" to="/clubs">
-    //             NEWS
-    //           </Link>
-    //         </li>
-    //         <li className="nav-item active">
-    //           <Link className="nav-link text-light ml-5" to="/clubs">
-    //             ABOUT US
-    //           </Link>
-    //         </li>
-    //       </ul>
-    //     </div>
-
-    //     <div className="">
-    //       {isLogin ? (
-    //         <DropdownButton
-    //           as={ButtonGroup}
-    //           id={`dropdown-variants-primary`}
-    //           variant="primary"
-    //           title={currentUser?.firstName}
-    //         >
-    //           <Dropdown.Item eventKey="1">Profile</Dropdown.Item>
-
-    //           <Dropdown.Divider />
-    //           <Dropdown.Item onClick={logOut} eventKey="4">
-    //             Log Out
-    //           </Dropdown.Item>
-    //         </DropdownButton>
-    //       ) : (
-    //         <Button
-    //           className=" ml-3"
-    //           variant="primary"
-    //           onClick={() => handleShow(true)}
-    //         >
-    //           login
-    //         </Button>
-    //       )}
-
-    //       <Button className=" ml-3">
-    //         <Link className="text-light " to="/sign-up">
-    //           sign up
-    //         </Link>
-    //       </Button>
-    //     </div>
-    //   </Navbar>
-    //   <LoginModal handleClick={handleShow} show={showModal} />
-    // </header>
   );
 }
 

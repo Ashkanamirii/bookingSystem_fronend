@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -19,16 +20,16 @@ const Footer = () => {
               <h4>Lorem ipsum</h4>
               <ul className="list-unstyled">
                 <li>
-                  <a href="#">lorem ipsum dolor</a>
+                  <Link to="#">lorem ipsum dolor</Link>
                 </li>
                 <li>
-                  <a href="#">lorem ipsum dolor</a>
+                  <Link to="#">lorem ipsum dolor</Link>
                 </li>
                 <li>
-                  <a href="#">lorem ipsum dolor</a>
+                  <Link to="#">lorem ipsum dolor</Link>
                 </li>
                 <li>
-                  <a href="#">lorem ipsum dolor</a>
+                  <Link to="#">lorem ipsum dolor</Link>
                 </li>
               </ul>
             </div>
@@ -36,16 +37,16 @@ const Footer = () => {
               <h4>Lorem ipsum</h4>
               <ul className="list-unstyled">
                 <li>
-                  <a href="#">lorem ipsum dolor</a>
+                     <Link to="#">lorem ipsum dolor</Link>
                 </li>
                 <li>
-                  <a href="#">lorem ipsum dolor</a>
+                     <Link to="#">lorem ipsum dolor</Link>
                 </li>
                 <li>
-                  <a href="#">lorem ipsum dolor</a>
+                     <Link to="#">lorem ipsum dolor</Link>
                 </li>
                 <li>
-                  <a href="#">lorem ipsum dolor</a>
+                     <Link to="#">lorem ipsum dolor</Link>
                 </li>
               </ul>
             </div>
@@ -84,5 +85,17 @@ const FooterContainer = styled.footer`
 
   ul li a:hover {
     color: var(--mainLightGray);
+  }
+`;
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
+
+  &:focus,
+  &:hover,
+  &:visited,
+  &:link,
+  &:active {
+    text-decoration: none;
   }
 `;
