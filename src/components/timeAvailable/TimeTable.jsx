@@ -1,27 +1,33 @@
-import {useState,useEffect} from 'react'
-import TimeRang from './TimeRang'
-import api from './TimeRangeApi'
+import { useState, useEffect } from "react";
+import TimeRang from "./TimeRang";
+import api from "./TimeRangeApi";
 
-const TimeTable = () => {
+const TimeTable = ({ id }) => {
+  const [timesAvailable, setTimesAvailable] = useState();
+  const [toggle, setToggle] = useState("");
 
-    const [timesAvailable, setTimesAvailable] = useState()
+  useEffect(() => {
+    // TODO: This should take id and call the API to get time range information.
+    setTimesAvailable(api);
+  }, []);
 
-    useEffect(() => {
-       setTimesAvailable(api)
-       
-    }, [])
+  return (
+    <div className="d-flex flex-row">
+      {timesAvailable ? (
+        timesAvailable.map((item, index) => (
+          <TimeRang
+            key={item.id}
+            range={item.range}
+            id={item.id}
+            toggle={toggle === index ? "0" : "1"}
+            onToggle={() => setToggle(index)}
+          />
+        ))
+      ) : (
+        <h3>No times available</h3>
+      )}
+    </div>
+  );
+};
 
-
-    return (
-        <div >
-            {timesAvailable
-            ?
-                timesAvailable.map(item => <TimeRang range={item.range} id={item.id} />)
-            :
-            <h3>No times available</h3>
-        }
-        </div>
-    )
-}
-
-export default TimeTable
+export default TimeTable;

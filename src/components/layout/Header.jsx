@@ -57,19 +57,14 @@ function Header(props) {
 
           <Nav className="d-flex justify-content-center">
             {isLogin ? (
-              <DropdownButton
-                as={ButtonGroup}
-                id={`dropdown-variants-success`}
-                variant="success"
+              <NavDropdown
                 title={currentUser?.firstName}
+                id="collasible-nav-dropdown"
               >
-                <Dropdown.Item eventKey="1">Profile</Dropdown.Item>
-
-                <Dropdown.Divider />
-                <Dropdown.Item onClick={logOut} eventKey="4">
-                  Log Out
-                </Dropdown.Item>
-              </DropdownButton>
+                <NavDropdown.Item href="#action/3.2">Profile</NavDropdown.Item>
+                <NavDropdown.Item onClick={logOut}>log Out</NavDropdown.Item>
+                
+              </NavDropdown>
             ) : (
               <div>
                 <Button variant="secondary" onClick={() => handleShow(true)}>
@@ -77,7 +72,11 @@ function Header(props) {
                 </Button>
 
                 <Button className="ms-2" variant="secondary">
-                  <Link style={{ textDecoration: 'none' }} className="text-light" to="/sign-up">
+                  <Link
+                    style={{ textDecoration: "none" }}
+                    className="text-light"
+                    to="/sign-up"
+                  >
                     sign up
                   </Link>
                 </Button>
