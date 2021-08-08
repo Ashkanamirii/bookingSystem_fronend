@@ -4,7 +4,6 @@ import signUpApi from "./../../../service/signUpApi";
 import { useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
 
-import "./SignUpForm.css";
 function SignUpForm(params) {
   const history = useHistory();
   let userDetail = {
@@ -24,7 +23,7 @@ function SignUpForm(params) {
   const [user, setUser] = useState(userDetail);
 
   return (
-    <div className="container d-flex justify-content-center">
+    <div className="container d-flex justify-content-center sign-up">
       <div className="row-signUp row my-5">
         <div className="col-md-6 text-left text-white lcol">
           <div className="greeting">

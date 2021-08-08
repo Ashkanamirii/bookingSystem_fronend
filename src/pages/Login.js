@@ -2,7 +2,6 @@ import Form from "../components/auth/login/Form.jsx";
 import { useHistory } from "react-router-dom";
 import getTokenApi from "../service/getTokenApi";
 import { useDispatch } from "react-redux";
-import { setLogin } from "../redux/actions/loginActions";
 import userDetailsApi from "./../service/userDetailsApi"
 
 function Login() {

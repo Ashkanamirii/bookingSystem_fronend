@@ -6,7 +6,7 @@ const Header = () => {
       <h3>Time available slots</h3>
 
       <div className="d-flex justify-content-between">
-        <input type="date" />
+        <input type="date"/>
 
         <DropdownButton
           id="dropdown-button-dark-example2"
@@ -16,12 +16,12 @@ const Header = () => {
           className="mt-2"
         >
           <Dropdown.Item href="#/action-1" active>
-            Action
+            Football
           </Dropdown.Item>
-          <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-          <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+          <Dropdown.Item href="#/action-2">Badminton</Dropdown.Item>
+          <Dropdown.Item href="#/action-3">Padel</Dropdown.Item>
           <Dropdown.Divider />
-          <Dropdown.Item href="#/action-4">Separated link</Dropdown.Item>
+          <Dropdown.Item href="#/action-4">Tennis</Dropdown.Item>
         </DropdownButton>
       </div>
     </div>

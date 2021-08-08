@@ -1,18 +1,30 @@
 import { useState } from "react";
-import { Button } from "react-bootstrap";
-
-const TimeRang = ({ id, range }) => {
+import { Button, Accordion, Card } from "react-bootstrap";
+function CustomToggle({ children, eventKey }) {
+  return (
+    <button type="button" style={{ backgroundColor: "pink" }}>
+      {children}
+    </button>
+  );
+}
+const TimeRang = ({ id, range, toggle, onToggle }) => {
   const [booking, setBooking] = useState(false);
 
   return (
-    <Button
-      id={id}
-      className="ml-1"
-      variant="outline-success"
-      onClick={() => setBooking(true)}
-    >
-      {range}
-    </Button>
+    <Accordion activeKey={toggle}>
+      <Button
+        id={id}
+        className="m-1"
+        variant="outline-success"
+        onClick={onToggle}
+      >
+        {range}
+      </Button>
+
+      <Accordion.Collapse eventKey={"0"}>
+        <Card.Body>Hello! I'm the body</Card.Body>
+      </Accordion.Collapse>
+    </Accordion>
   );
 };
 
