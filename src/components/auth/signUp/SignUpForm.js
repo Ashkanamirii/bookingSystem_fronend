@@ -1,18 +1,22 @@
-import Input from "./../../customiseElements/Input";
+import Input from "../../customElements/Input";
 import { useState } from "react";
-import api from "../../../baseUrl/endpoint.js";
-import swal from "sweetalert";
+import signUpApi from "./../../../service/signUpApi";
 import { useHistory } from "react-router-dom";
-
+import { Link } from "react-router-dom";
 function SignUpForm(params) {
-  let history = useHistory();
-
+  const history = useHistory();
   let userDetail = {
     firstName: "",
     lastName: "",
     email: "",
     password: "",
     securityNumber: 0,
+  };
+
+  const signUpApiHandle = (e) => {
+    e.preventDefault();
+    signUpApi(user);
+    history.push("/login");
   };
 
   const [user, setUser] = useState(userDetail);
@@ -23,10 +27,10 @@ function SignUpForm(params) {
         <div className="col-md-6 text-left text-white lcol">
           <div className="greeting">
             <h3>
-              Welcome to <span className="txt">stoke</span>
+              Welcome to your<span className="txt"> SuperBookingSystem</span>
             </h3>
           </div>
-          <h6 className="mt-3">
+          <h6 className="mt-2">
             let's light some fire and get the show on the road...
           </h6>
           <div className="footer">
@@ -36,12 +40,12 @@ function SignUpForm(params) {
                 <i className="fab fa-facebook-f"></i>
                 <i className="fab fa-twitter"></i>
               </div>
-              <span>Privacy Policy</span> <span>&copy; 2020 Stoke</span>
+              <span>Privacy Policy</span> <span>&copy; 2021 SuperBookingSystem</span>
             </div>
           </div>
         </div>
         <div className="col-md-6 rcol">
-          <form className="sign-up" onSubmit={signUpForm}>
+          <form className="sign-up" onSubmit={signUpApiHandle}>
             <h2 className="heading mb-4">Sign up</h2>
 
             <Input
@@ -79,54 +83,12 @@ function SignUpForm(params) {
           </form>
 
           <p className="exist mt-4">
-            Existing user? <span>Log in</span>
+            Existing user? <Link to="/login"><span>Log in</span></Link>
           </p>
         </div>
       </div>
     </div>
   );
-
-  /**
-   *
-   * @param {object} user
-   */
-  function signUpForm(e) {
-    e.preventDefault();
-    console.log(user);
-
-    api
-      .post("/authenticate/signup", user)
-      .then((response) => {
-        if (response.status === 400) {
-          console.log(response.text());
-        } else {
-          console.log(response.data);
-         
-          swal("An account verification email was sent, check your email to activate your account", response.data, "success").then(() => {
-            history.push("/login");
-          });
-          
-        }
-      })
-      .catch(function (error) {
-        if (error.response) {
-          // The request was made and the server responded with a status code
-          // that falls out of the range of 2xx
-          console.log(error.response.data);
-          console.log(error.response.status);
-          console.log(error.response.headers);
-        } else if (error.request) {
-          // The request was made but no response was received
-          // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
-          // http.ClientRequest in node.js
-          console.log(error.request);
-        } else {
-          // Something happened in setting up the request that triggered an Error
-          console.log("Error", error.message);
-        }
-        console.log(error.config);
-      });
-  }
 }
 
 export default SignUpForm;

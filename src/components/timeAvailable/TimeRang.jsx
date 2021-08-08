@@ -1,16 +1,18 @@
-import {useContext} from "react";
+import { useState } from "react";
 import { Button } from "react-bootstrap";
-import BookingContext from "../../context/BookingContext";
 
-const TimeRang = ({id,range}) => {
-    const [booking, setBooking] = useContext(BookingContext)
+const TimeRang = ({ id, range }) => {
+  const [booking, setBooking] = useState(false);
 
   return (
-    
-      <Button id={id} className="ml-1" variant="outline-success"
-      onClick={(e) => setBooking(true)}
-      >{range}</Button>
-   
+    <Button
+      id={id}
+      className="ml-1"
+      variant="outline-success"
+      onClick={() => setBooking(true)}
+    >
+      {range}
+    </Button>
   );
 };
 

@@ -1,26 +1,20 @@
 import Form from "../components/auth/login/Form.jsx";
-import LoggedContext from "../context/LoggedContext.js";
-import { useContext, useState } from "react";
 import { useHistory } from "react-router-dom";
-import UserContext from "../context/UserContext.js";
-import getUser from "../functions/GetUser";
+import getTokenApi from "../service/getTokenApi";
+import { useDispatch } from "react-redux";
+import { setLogin } from "../redux/actions/loginActions";
+import userDetailsApi from "./../service/userDetailsApi"
 
 function Login() {
-  let history = useHistory();
-  const [userInformation, setUserInformation] = useContext(UserContext);
-  const [isLogged, setIsLogged] = useContext(LoggedContext);
-  const [error, setError] = useState("");
+  const history = useHistory();
+  const dispatch = useDispatch();
 
-  const submitForm = (user) => {
-    if (typeof getUser(user) == "object") {
-      setUserInformation(getUser(user));
-      setIsLogged(true);
-
-      history.push("/home");
-    } else {
-      setError(getUser(user));
-    }
+  const submitForm = async (user) => {
+    let token = await dispatch(getTokenApi(user));
+    dispatch(userDetailsApi(token));
+    history.push("/home");
   };
+
   return (
     <div className="outer">
       <div className="inner">
@@ -30,4 +24,5 @@ function Login() {
     </div>
   );
 }
+
 export default Login;
