@@ -19,26 +19,29 @@ function LoginModal(props) {
 
   return (
     <Modal
-      className=""
+      {...props}
       show={props.show}
       onHide={handleClose}
       backdrop="static"
       keyboard={false}
+      size="sm"
+      aria-labelledby="contained-modal-title-vcenter"
+      centered
     >
-      <Modal.Header className="" closeButton>
+      <Modal.Header className="" closeButton id="contained-modal-title-vcenter">
         <h3>Sign In</h3>
       </Modal.Header>
       <Modal.Body>
         <Form userInfoForm={submitForm} />
       </Modal.Body>
-      <Modal.Footer>
-        <div className="">
+      <Modal.Footer className="d-flex justify-content-between">
+        <div className="forgot-password">
           Don't have an account?
-          <Link to="sign-up" onClick={handleClose}>
+          <Link className="ms-2"to="sign-up" onClick={handleClose}>
             Sign Up
           </Link>
         </div>
-        <div className="">
+        <div className="forgot-password">
           <Link to="/reset/pass/" onClick={handleClose}>
             Forgot your password?
           </Link>

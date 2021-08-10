@@ -22,7 +22,11 @@ body {
   min-height: 600px;
 }
 
-a{
+a {
   text-decoration: none;
-  color: #000
+  color: #000;
+}
+.active-toggle {
+  background-color: green;
+  color: #fff;
 }
