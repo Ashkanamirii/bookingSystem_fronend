@@ -4,11 +4,11 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <FooterContainer className="main-footer">
+    <FooterContainer className="main-footer ">
       <div className="footer-middle">
-        <div className="container">
-          <div className="row d-flex justify-content-center">
-            <div className="col-lg-4 col-md-6">
+        <div className="">
+          <div className="row w-100">
+            <div className="col-lg-3 col-md-4">
               <h4>Contact Us</h4>
               <ul className="list-unstyled">
                 <li>Phone: 073******</li>
@@ -16,7 +16,7 @@ const Footer = () => {
                 <li>Email: ipsum dolor</li>
               </ul>
             </div>
-            <div className="col-lg-4 col-md-6">
+            <div className="col-lg-4 col-md-4">
               <h4>Lorem ipsum</h4>
               <ul className="list-unstyled">
                 <li>
@@ -33,7 +33,7 @@ const Footer = () => {
                 </li>
               </ul>
             </div>
-            <div className="col-lg-4 col-md-6">
+            <div className="col-lg-4 col-md-4">
               <h4>Lorem ipsum</h4>
               <ul className="list-unstyled">
                 <li>

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import {Button} from "react-bootstrap"
+import { Button } from "react-bootstrap";
 
 function Form(props) {
   const [userLogin, setUserLogin] = useState({
@@ -40,117 +40,13 @@ function Form(props) {
         />
       </div>
 
-      <div className="form-group">
-        <div className="custom-control custom-checkbox">
-          <input
-            type="checkbox"
-            className="custom-control-input"
-            id="customCheck1"
-          />
-          <label
-            className="custom-control-label text-white"
-            htmlFor="customCheck1"
-          >
-            Remember me
-          </label>
-        </div>
-      </div>
-      <div className="d-grid gap-2">
-      <Button type="submit" variant="warning" size="lg">
-        Sign in
-      </Button>
+      <div className="d-grid gap-2 mt-2">
+        <Button type="submit" variant="warning" size="lg">
+          Sign in
+        </Button>
       </div>
     </form>
   );
 }
 
 export default Form;
-
-/*****************************
- return (
-      <>
-        <div className="container">
-          <div className="d-flex justify-content-center h-100">
-            <div className="bg-dark">
-              <div className="header-form" closeButton>
-                <h3>Sign In</h3>
-                <div className="d-flex justify-content-end social_icon">
-                  <span>
-                    <i className="fa fa-facebook-square" aria-hidden="true"></i>
-                  </span>
-                  <span>
-                    <FontAwesomeIcon icon={["fab", "apple"]}></FontAwesomeIcon>
-                  </span>
-                  <span>
-                    <i className="fab fa-twitter-square"></i>
-                  </span>
-                </div>
-              </div>
-              <div className="body-form">
-                <form onSubmit={getUser}>
-                  <div className="input-group form-group">
-                    <div className="input-group-prepend">
-                      <span className="input-group-text">
-                        <FontAwesomeIcon icon={["fas", "fa-user"]} />
-                      </span>
-                    </div>
-                    <input
-                      type="text"
-                      className="form-control"
-                      placeholder="username"
-                      value={user.email}
-                      onChange={(e) =>
-                        setUser({
-                          email: e.target.value,
-                          password: user.password,
-                        })
-                      }
-                    />
-                  </div>
-                  <div className="input-group form-group">
-                    <div className="input-group-prepend">
-                      <span className="input-group-text">
-                        <i className="fas fa-key"></i>
-                      </span>
-                    </div>
-                    <input
-                      type="password"
-                      className="form-control"
-                      placeholder="password"
-                      value={user.password}
-                      onChange={(e) =>
-                        setUser({ email: user.email, password: e.target.value })
-                      }
-                    />
-                  </div>
-
-                  <div className="form-group">
-                    <Button
-                      type="submit"
-                      className="btn btn-warning float-right "
-                    >
-                      Login
-                    </Button>
-                  </div>
-                </form>
-              </div>
-              <div className="footer-form">
-                <div className="d-flex justify-content-center links">
-                  Don't have an account?
-                  <Link to="sign-up" onClick={props.loginClose}>
-                    Sign Up
-                  </Link>
-                </div>
-                <div className="d-flex justify-content-center">
-                  <a href="#">Forgot your password?</a>
-                </div>
-              </div>
-            </div>
-
-           
-          </div>
-        </div>
-      </>
-    ); 
- 
- */

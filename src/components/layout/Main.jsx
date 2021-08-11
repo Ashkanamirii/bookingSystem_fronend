@@ -21,7 +21,7 @@ function Main() {
     }
   }, []);
   return (
-    <div className="main-content container">
+    <div className="main-content container mt-1">
       <Switch>
         <Route path="/" exact>
           {isLogged ? <Home /> : <Login />}

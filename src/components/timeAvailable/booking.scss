@@ -1,0 +1,25 @@
+.booking {
+  border: 1px solid #ebebeb;
+  height: 200px;
+  width: 50%;
+  margin: auto;
+  background-color: #ffffff;
+  border-radius: 10px;
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 2);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 2);
+  text-align: center;
+
+  @media screen and (max-width: 992px) {
+    width: fit-content;
+    font-size: 0.9rem;
+    font-weight: 300;
+  }
+
+  h6 {
+    font-weight: 700;
+    line-height: 1.1;
+    color: #404040;
+    text-align: center;
+    margin: 10px;
+  }
+}

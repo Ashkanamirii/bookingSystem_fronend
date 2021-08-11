@@ -15,7 +15,7 @@ function Login() {
   };
 
   return (
-    <div className="outer">
+    <div className="d-flex flex-column justify-content-center text-center m-4">
       <div className="inner">
         <h3>Log in</h3>
         <Form userInfoForm={submitForm} />
