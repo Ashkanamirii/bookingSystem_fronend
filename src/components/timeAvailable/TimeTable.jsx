@@ -4,22 +4,23 @@ import api from "./TimeRangeApi";
 import Booking from "./Booking.jsx";
 
 // INDEX IS PARENT OF TimeTable
-const TimeTable = ({ id }) => {
+const TimeTable = ({}) => {
   const [timesAvailable, setTimesAvailable] = useState();
   const [toggle, setToggle] = useState("");
+  const[bookingTime, setBookingTime] = useState("")
 
   useEffect(() => {
     // TODO: This should take id and call the API to get time range information for each club.
     setTimesAvailable(api);
   }, []);
 
-  const onToggleHandler = (e, toggledItem) => {
+  const onToggleHandler = (range, toggledItem) => {
     if (toggle === toggledItem) {
       setToggle("");
     } else {
       // TODO: call Api to get information for clubs and pass to Booking by props
       setToggle(toggledItem);
-      console.log(e, toggledItem);
+      setBookingTime(range)
     }
   };
 
@@ -33,7 +34,7 @@ const TimeTable = ({ id }) => {
               range={item.range}
               id={item.id}
               toggle={toggle === index ? "0" : "1"}
-              onToggle={() => onToggleHandler(item.id, index)}
+              onToggle={() => onToggleHandler(item.range, index)}
             />
           ))
         ) : (
@@ -44,6 +45,7 @@ const TimeTable = ({ id }) => {
       {toggle !== "" && (
         <Booking
           title={"booking"}
+          bookingTime={bookingTime}
           clubs={[
             {
               name: "club1",

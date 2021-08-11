@@ -8,7 +8,7 @@ import { useDispatch } from "react-redux";
 function LoginModal(props) {
   const dispatch = useDispatch();
   const handleClose = () => {
-    props.handleClick(false);
+    props.showModal(false);
   };
 
   const submitForm = async (user) => {
