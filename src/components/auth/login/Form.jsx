@@ -34,6 +34,7 @@ function Form(props) {
           className="form-control"
           placeholder="Enter password"
           value={userLogin.password}
+          autoComplete="true"
           onChange={(e) =>
             setUserLogin({ ...userLogin, password: e.target.value })
           }

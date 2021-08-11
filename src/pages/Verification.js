@@ -14,6 +14,6 @@ export default function Verification() {
 }
 
 function getTokenFromUrl(address) {
-  const splitted = address.split("token=");
-  return splitted[1];
+  const s = address.split("token=");
+  return s[1];
 }
