@@ -1,15 +1,8 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: 0;
-}
-
 @import "./variables.scss";
 @import "./style.scss";
 
 //Component
 @import "../components/auth/login/_form.scss";
-@import "../components/auth/login/_modal.scss";
 @import "../components/auth/signUp/SignUpForm.scss";
 @import "../components/timeAvailable/booking.scss";
 

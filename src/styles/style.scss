@@ -1,6 +1,9 @@
 * {
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
+
 
 body {
   background: #12c2e9; /* fallback for old browsers */
@@ -18,15 +21,38 @@ body {
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
+
+ 
+#{$a-tags} {
+  color: rgb(180, 178, 178);
+  text-decoration: none;
+}
+#{$a-tags-hover} {
+  color: rgb(255, 255, 255);
+}
+
 .main-content {
-  min-height: 600px;
+  min-height: 39rem;
 }
 
 a {
   text-decoration: none;
-  color: #000;
+  color: rgb(197, 197, 197);
+ 
 }
 .active-toggle {
   background-color: green;
   color: #fff;
 }
+
+
+// import styled from 'styled-components';
+
+
+// const StyledLink = styled(Link)`
+//     text-decoration: none;
+
+//     &:focus, &:hover, &:visited, &:link, &:active {
+//         text-decoration: none;
+//     }
+// `;

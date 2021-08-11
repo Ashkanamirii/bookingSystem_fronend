@@ -23,7 +23,7 @@ const Booking = (props) => {
                 <td>{club.timeRange}</td>
                 <td>{club.price}</td>
                 <td>
-                  <button type="submit" class="btn btn-primary btn-sm">
+                  <button type="submit" className="btn btn-primary btn-sm">
                     Book
                   </button>
                 </td>

@@ -1,4 +1,4 @@
-$black:#000;
+
 
 :root{
     --mainDark : #343a40;
@@ -7,3 +7,7 @@ $black:#000;
     --mainWhite: #fff;
     --mainBlue: #007bff;
 }
+
+
+$a-tags: 'a, a:active, a:hover, a:visited';
+$a-tags-hover: 'a:active, a:hover';

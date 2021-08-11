@@ -1,16 +1,13 @@
-import React, { useState } from "react";
+import React, { useState } from 'react'
 
 import {
-  DatePicker,
   KeyboardDatePicker,
-  TimePicker,
-  DateTimePicker,
   MuiPickersUtilsProvider,
-} from "@material-ui/pickers";
-import DateFnsUtils from "@date-io/date-fns";
-// This component will filter the clubs by date and sport 
+} from '@material-ui/pickers'
+import DateFnsUtils from '@date-io/date-fns'
+// This component will filter the clubs by date and sport
 const FilterClubs = () => {
-  const [selectedDate, handleDateChange] = useState(new Date());
+  const [selectedDate, handleDateChange] = useState(new Date())
 
   return (
     <div className="row bg-white p-3 mb-3 shadow rounded">
@@ -39,7 +36,7 @@ const FilterClubs = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default FilterClubs;
+export default FilterClubs
